@@ -25,6 +25,7 @@ update msg model =
 view : Int -> Html Msg
 view model =
     Html.div []
-        [ Html.img [ Html.Attributes.src "/logo.png", Html.Attributes.style "width" "300px" ] []
+        [ Html.img [ Html.Attributes.src "/logo.png", Html.Attributes.style "width" "300px" ]
+            []
         , HelloWorld.view model
         ]
