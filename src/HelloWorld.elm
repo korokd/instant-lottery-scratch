@@ -1,4 +1,4 @@
-module HelloWorld exposing (helloWorld)
+module HelloWorld exposing (view)
 
 import Html exposing (Html)
 import Html.Attributes
@@ -6,8 +6,8 @@ import Html.Events
 import Msg exposing (Msg(..))
 
 
-helloWorld : Int -> Html Msg
-helloWorld model =
+view : Int -> Html Msg
+view model =
     Html.div []
         [ Html.h1 [] [ Html.text "Hello, Vite + Elm!" ]
         , Html.p []

@@ -26,5 +26,5 @@ view : Int -> Html Msg
 view model =
     Html.div []
         [ Html.img [ Html.Attributes.src "/logo.png", Html.Attributes.style "width" "300px" ] []
-        , HelloWorld.helloWorld model
+        , HelloWorld.view model
         ]
