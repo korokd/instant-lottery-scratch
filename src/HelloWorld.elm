@@ -3,10 +3,11 @@ module HelloWorld exposing (view)
 import Html exposing (Html)
 import Html.Attributes
 import Html.Events
+import Model exposing (Model)
 import Msg exposing (Msg(..))
 
 
-view : Int -> Html Msg
+view : Model -> Html Msg
 view model =
     Html.div []
         [ Html.h1 []
