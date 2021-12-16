@@ -1,11 +1,10 @@
 module Main exposing (main)
 
 import Browser
-import Html exposing (Html, div, img)
-import Html.Attributes exposing (src, style)
-import Html.Events exposing (..)
+import HelloWorld
+import Html exposing (Html)
+import Html.Attributes
 import Msg exposing (Msg(..))
-import HelloWorld exposing (helloWorld)
 
 
 main : Program () Int Msg
@@ -25,7 +24,7 @@ update msg model =
 
 view : Int -> Html Msg
 view model =
-    div []
-        [ img [ src "/logo.png", style "width" "300px" ] []
-        , helloWorld model
+    Html.div []
+        [ Html.img [ Html.Attributes.src "/logo.png", Html.Attributes.style "width" "300px" ] []
+        , HelloWorld.helloWorld model
         ]

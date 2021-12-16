@@ -1,24 +1,24 @@
 module HelloWorld exposing (helloWorld)
 
-import Html exposing (Html, div, h1, p, a, button, code, text)
-import Html.Attributes exposing (href)
-import Html.Events exposing (onClick)
+import Html exposing (Html)
+import Html.Attributes
+import Html.Events
 import Msg exposing (Msg(..))
 
 
 helloWorld : Int -> Html Msg
 helloWorld model =
-    div []
-        [ h1 [] [ text "Hello, Vite + Elm!" ]
-        , p []
-            [ a [ href "https://vitejs.dev/guide/features.html" ] [ text "Vite Documentation" ]
-            , text " | "
-            , a [ href "https://guide.elm-lang.org/" ] [ text "Elm Documentation" ]
+    Html.div []
+        [ Html.h1 [] [ Html.text "Hello, Vite + Elm!" ]
+        , Html.p []
+            [ Html.a [ Html.Attributes.href "https://vitejs.dev/guide/features.html" ] [ Html.text "Vite Documentation" ]
+            , Html.text " | "
+            , Html.a [ Html.Attributes.href "https://guide.elm-lang.org/" ] [ Html.text "Elm Documentation" ]
             ]
-        , button [ onClick Increment ] [ text ("count is: " ++ String.fromInt model) ]
-        , p []
-            [ text "Edit "
-            , code [] [ text "src/Main.elm" ]
-            , text " to test auto refresh"
+        , Html.button [ Html.Events.onClick Increment ] [ Html.text ("count is: " ++ String.fromInt model) ]
+        , Html.p []
+            [ Html.text "Edit "
+            , Html.code [] [ Html.text "src/Main.elm" ]
+            , Html.text " to test auto refresh"
             ]
         ]
