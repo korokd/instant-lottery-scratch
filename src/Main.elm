@@ -1,7 +1,6 @@
 module Main exposing (main)
 
 import Browser exposing (Document)
-import HelloWorld
 import Html exposing (Html)
 import Html.Attributes
 import Model exposing (Flags, Model)
@@ -27,15 +26,10 @@ subscriptions _ =
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg ({ count } as model) =
+update msg model =
     case msg of
-        Increment ->
-            ( { model | count = count + 1 }
-            , Cmd.none
-            )
-
-        Decrement ->
-            ( { model | count = count - 1 }
+        NoOp ->
+            ( model
             , Cmd.none
             )
 
@@ -45,9 +39,6 @@ view ({ rootId } as model) =
     { title = "title"
     , body =
         [ Html.main_ [ Html.Attributes.id rootId ]
-            [ Html.img [ Html.Attributes.src "/logo.png", Html.Attributes.style "width" "300px" ]
-                []
-            , HelloWorld.view model
-            ]
+            []
         ]
     }

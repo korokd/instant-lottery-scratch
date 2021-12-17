@@ -7,13 +7,10 @@ type alias Flags =
 
 
 type alias Model =
-    { count : Int
-    , rootId : String
-    }
+    Flags
 
 
 initial : Flags -> Model
 initial { rootId } =
-    { count = 0
-    , rootId = rootId
+    { rootId = rootId
     }
