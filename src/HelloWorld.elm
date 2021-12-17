@@ -8,7 +8,7 @@ import Msg exposing (Msg(..))
 
 
 view : Model -> Html Msg
-view model =
+view { count } =
     Html.div []
         [ Html.h1 []
             [ Html.text "Hello, Vite + Elm!" ]
@@ -20,7 +20,7 @@ view model =
                 [ Html.text "Elm Documentation" ]
             ]
         , Html.button [ Html.Events.onClick Increment ]
-            [ Html.text ("count is: " ++ String.fromInt model) ]
+            [ Html.text ("count is: " ++ String.fromInt count) ]
         , Html.p []
             [ Html.text "Edit "
             , Html.code [] [ Html.text "src/Main.elm" ]

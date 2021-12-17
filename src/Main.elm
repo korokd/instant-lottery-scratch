@@ -1,32 +1,53 @@
 module Main exposing (main)
 
-import Browser
+import Browser exposing (Document)
 import HelloWorld
 import Html exposing (Html)
 import Html.Attributes
-import Model exposing (Model)
+import Model exposing (Flags, Model)
 import Msg exposing (Msg(..))
 
 
-main : Program () Model Msg
+main : Program Flags Model Msg
 main =
-    Browser.sandbox { init = 0, update = update, view = view }
+    Browser.document
+        { init = init, subscriptions = subscriptions, update = update, view = view }
 
 
-update : Msg -> Model -> Model
-update msg model =
+init : Flags -> ( Model, Cmd Msg )
+init flags =
+    ( Model.initial flags
+    , Cmd.none
+    )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Sub.none
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg ({ count } as model) =
     case msg of
         Increment ->
-            model + 1
+            ( { model | count = count + 1 }
+            , Cmd.none
+            )
 
         Decrement ->
-            model - 1
+            ( { model | count = count - 1 }
+            , Cmd.none
+            )
 
 
-view : Model -> Html Msg
-view model =
-    Html.div []
-        [ Html.img [ Html.Attributes.src "/logo.png", Html.Attributes.style "width" "300px" ]
-            []
-        , HelloWorld.view model
+view : Model -> Document Msg
+view ({ rootId } as model) =
+    { title = "title"
+    , body =
+        [ Html.main_ [ Html.Attributes.id rootId ]
+            [ Html.img [ Html.Attributes.src "/logo.png", Html.Attributes.style "width" "300px" ]
+                []
+            , HelloWorld.view model
+            ]
         ]
+    }
