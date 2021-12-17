@@ -5,6 +5,7 @@ import Html exposing (Html)
 import Html.Attributes
 import Model exposing (Flags, Model)
 import Msg exposing (Msg(..))
+import Ticket
 
 
 main : Program Flags Model Msg
@@ -39,6 +40,7 @@ view ({ rootId } as model) =
     { title = "title"
     , body =
         [ Html.main_ [ Html.Attributes.id rootId ]
-            []
+            [ Ticket.view model
+            ]
         ]
     }
