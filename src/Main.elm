@@ -37,7 +37,7 @@ update msg model =
 
 view : Model -> Document Msg
 view ({ rootId } as model) =
-    { title = "title"
+    { title = "Instant Lotto with elm-ui"
     , body =
         [ Html.main_ [ Html.Attributes.id rootId ]
             [ Ticket.view model
