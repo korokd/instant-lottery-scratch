@@ -1,6 +1,6 @@
 module Ticket exposing (view)
 
-import Element exposing (Element)
+import Element exposing (Column, Element)
 import Model exposing (Model)
 import Msg exposing (Msg)
 import Square
@@ -21,17 +21,31 @@ listOfPrizeIds =
     List.range prizeLowerBoundary prizeUpperBoundary
 
 
+amountOfColumns : Int
+amountOfColumns =
+    listOfPrizeIds
+        |> List.length
+        |> toFloat
+        |> sqrt
+        |> ceiling
+
+
+columnConfig : Model -> Column Int Msg
+columnConfig model =
+    { header = Element.none
+    , width = Element.px 200
+    , view = toSquare model
+    }
+
+
 view : Model -> Element Msg
 view model =
     Element.table
         []
         { data = listOfPrizeIds
         , columns =
-            [ { header = Element.none
-              , width = Element.px 200
-              , view = \id -> toSquare model id
-              }
-            ]
+            List.repeat amountOfColumns <|
+                columnConfig model
         }
 
 

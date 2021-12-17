@@ -7,4 +7,5 @@ import Msg exposing (Msg)
 
 view : Int -> Model -> Element Msg
 view _ _ =
+    -- use alignCenter here later
     Element.none
