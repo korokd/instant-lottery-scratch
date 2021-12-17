@@ -11,7 +11,6 @@ import PrizeId exposing (PrizeId)
 
 type alias Flags =
     { prizeId : Int
-    , rootId : String
     }
 
 
@@ -19,12 +18,11 @@ type alias Model =
     { prizeLowerBoundary : Int
     , prizeUpperBoundary : Int
     , prizeId : PrizeId
-    , rootId : String
     }
 
 
 initial : Flags -> Model
-initial { rootId, prizeId } =
+initial { prizeId } =
     { prizeLowerBoundary = prizeLowerBoundary
     , prizeUpperBoundary = prizeUpperBoundary
     , prizeId =
@@ -32,7 +30,6 @@ initial { rootId, prizeId } =
             prizeLowerBoundary
             prizeUpperBoundary
             prizeId
-    , rootId = rootId
     }
 
 

@@ -1,8 +1,7 @@
 module Main exposing (main)
 
 import Browser exposing (Document)
-import Html exposing (Html)
-import Html.Attributes
+import Element exposing (Element)
 import Model exposing (Flags, Model)
 import Msg exposing (Msg(..))
 import Ticket
@@ -36,11 +35,12 @@ update msg model =
 
 
 view : Model -> Document Msg
-view ({ rootId } as model) =
+view model =
     { title = "Instant Lotto with elm-ui"
     , body =
-        [ Html.main_ [ Html.Attributes.id rootId ]
-            [ Ticket.view model
-            ]
+        [ Element.layout [] <|
+            Element.column []
+                [ Ticket.view model
+                ]
         ]
     }

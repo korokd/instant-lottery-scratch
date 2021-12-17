@@ -1,6 +1,6 @@
 module Ticket exposing (view)
 
-import Html exposing (Html)
+import Element exposing (Element)
 import Model exposing (Model)
 import Msg exposing (Msg)
 import Square
@@ -16,13 +16,25 @@ prizeUpperBoundary =
     Model.prizeUpperBoundary
 
 
-view : Model -> Html Msg
+listOfPrizeIds : List Int
+listOfPrizeIds =
+    List.range prizeLowerBoundary prizeUpperBoundary
+
+
+view : Model -> Element Msg
 view model =
-    Html.div [] <|
-        List.map (toSquare model) <|
-            List.range prizeLowerBoundary prizeUpperBoundary
+    Element.table
+        []
+        { data = listOfPrizeIds
+        , columns =
+            [ { header = Element.none
+              , width = Element.px 200
+              , view = \id -> toSquare model id
+              }
+            ]
+        }
 
 
-toSquare : Model -> Int -> Html Msg
+toSquare : Model -> Int -> Element Msg
 toSquare model id =
     Square.view id model
