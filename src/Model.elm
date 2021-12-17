@@ -1,16 +1,46 @@
-module Model exposing (Flags, Model, initial)
+module Model exposing
+    ( Flags
+    , Model
+    , initial
+    , prizeLowerBoundary
+    , prizeUpperBoundary
+    )
+
+import PrizeId exposing (PrizeId)
 
 
 type alias Flags =
-    { rootId : String
+    { prizeId : Int
+    , rootId : String
     }
 
 
 type alias Model =
-    Flags
+    { prizeLowerBoundary : Int
+    , prizeUpperBoundary : Int
+    , prizeId : PrizeId
+    , rootId : String
+    }
 
 
 initial : Flags -> Model
-initial { rootId } =
-    { rootId = rootId
+initial { rootId, prizeId } =
+    { prizeLowerBoundary = prizeLowerBoundary
+    , prizeUpperBoundary = prizeUpperBoundary
+    , prizeId =
+        PrizeId.fromIntGivenBoundaries
+            prizeLowerBoundary
+            prizeUpperBoundary
+            prizeId
+    , rootId = rootId
     }
+
+
+prizeLowerBoundary : Int
+prizeLowerBoundary =
+    0
+
+
+prizeUpperBoundary : Int
+prizeUpperBoundary =
+    8
