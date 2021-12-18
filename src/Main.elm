@@ -38,9 +38,20 @@ view : Model -> Document Msg
 view model =
     { title = "Instant Lotto with elm-ui"
     , body =
-        [ Element.layout [] <|
-            Element.column []
-                [ Ticket.view model
+        [ Element.layout
+            []
+          <|
+            Element.row
+                [ Element.height Element.fill
+                , Element.width Element.fill
+                ]
+                [ Element.el
+                    [ Element.centerX
+                    , Element.centerY
+                    ]
+                  <|
+                    Ticket.view
+                        model
                 ]
         ]
     }

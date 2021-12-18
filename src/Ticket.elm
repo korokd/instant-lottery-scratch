@@ -1,6 +1,7 @@
 module Ticket exposing (view)
 
-import Element exposing (Column, Element)
+import Element exposing (Attribute, Column, Element)
+import Element.Border
 import Model exposing (Model)
 import Msg exposing (Msg)
 import Square
@@ -16,18 +17,17 @@ prizeUpperBoundary =
     Model.prizeUpperBoundary
 
 
-listOfPrizeIds : List Int
-listOfPrizeIds =
-    List.range prizeLowerBoundary prizeUpperBoundary
-
-
 amountOfColumns : Int
 amountOfColumns =
-    listOfPrizeIds
-        |> List.length
+    (prizeUpperBoundary - prizeLowerBoundary)
         |> toFloat
         |> sqrt
         |> ceiling
+
+
+listOfPrizeIds : List Int
+listOfPrizeIds =
+    List.range prizeLowerBoundary (amountOfColumns - prizeLowerBoundary - 1)
 
 
 columnConfig : Model -> Column Int Msg
@@ -38,10 +38,21 @@ columnConfig model =
     }
 
 
+borderStyles : List (Attribute Msg)
+borderStyles =
+    [ Element.Border.color <| Element.rgba255 0 0 0 1
+    , Element.Border.dashed
+    , Element.Border.width 1
+    ]
+
+
 view : Model -> Element Msg
 view model =
     Element.table
-        []
+        (Element.padding 10
+            :: Element.spacing 10
+            :: borderStyles
+        )
         { data = listOfPrizeIds
         , columns =
             List.repeat amountOfColumns <|
